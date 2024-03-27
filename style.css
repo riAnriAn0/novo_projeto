@@ -10,13 +10,12 @@
 }
 
 body{
-    width: 100vw;
+    width: 100%;
     height: 100vh;
-    padding: 100px;
-    background: rgb(0, 0, 0);
+    background: #ffffff;
 }
 
-body > div{
+body > div{    
     width: 400px;
     margin: auto;
     padding: 10px;
@@ -30,21 +29,21 @@ div > div {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 5px;
     margin: 10px 0;
 }
 
 input{
     width: 200px;
-    height: 30px;
+    height: 50px;
     padding: 5px;
 }
 
 button{
     width: max-content;
-    height: 30px;
+    height: 40px;
     padding: 5px;
-    margin: 10px;
+    margin: 5px;
     border-radius: 10px;
     border: solid 1.5px;
 }
@@ -52,9 +51,4 @@ button{
 select{
     height: 30px;
     padding: 5px;
-}
-
-span{
-    color: red;
-    font-size: small;
 }
