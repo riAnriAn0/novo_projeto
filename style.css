@@ -18,10 +18,12 @@ body{
 body > div{    
     width: 400px;
     margin: auto;
+    margin-top: 50px;
     padding: 10px;
     background-color: white;
     border: solid 2px black;
     border-radius: 10px;
+    text-indent: 30px;
 }
 
 div > div {
@@ -42,7 +44,7 @@ input{
 button{
     width: max-content;
     height: 40px;
-    padding: 5px;
+    padding: 10px;
     margin: 5px;
     border-radius: 10px;
     border: solid 1.5px;
@@ -51,4 +53,14 @@ button{
 select{
     height: 30px;
     padding: 5px;
+}
+
+a{
+    text-decoration: none;
+}
+
+p{
+    text-align: justify;
+    font-weight: normal;
+    margin: 5px 0px;
 }

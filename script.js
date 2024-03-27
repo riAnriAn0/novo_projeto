@@ -55,19 +55,19 @@ let transformer = document.querySelector('#transformer')
     // Validação // 
 
     transformer.addEventListener('click',()=>{
-        if( valordeEntrada.value == '' ){
-            window.alert('Digite um número válido!!')
-        } else {
+        if(valordeEntrada.value !== ''){
             changeConersor()
+        } else {
+            window.alert('Digite um número válido!!')
         }
     })
     
     document.addEventListener('keyup',(event)=>{
         if(event.key === 'Enter'){
-            if( valordeEntrada.value == '' ){
-                window.alert('Digite um número válido!!')
-            } else {
+            if( valordeEntrada.value !== ''){
                 changeConersor()
+            } else {
+                window.alert('Digite um número válido!!')
             }
         }
     })
@@ -84,8 +84,8 @@ function transformarDB() {
 
         resto = decimal % 2
         numberBinario.unshift(resto)
-        decimal = Math.floor(decimal / 2) 
-       
+        decimal = Math.floor(decimal / 2)
+
         if(decimal == 1 || decimal == 0){
             numberBinario.unshift(decimal)
             cont = 1
@@ -99,9 +99,9 @@ function transformarDB() {
 function transformarBD() {
 
     let binario = String(valordeEntrada.value)  
-
+     
     // numero binario em string //
-
+    
     arrayNumberBinario = Array.from(binario)
     arrayNumberBinario = arrayNumberBinario.reverse()
 
@@ -128,4 +128,6 @@ let limpar = document.querySelector('#limpar')
 limpar.addEventListener('click',()=>{
     valordeEntrada.value = ''
     valordeSaida.value = ''
+    valordeEntrada.focus()
 })
+
