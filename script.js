@@ -120,3 +120,12 @@ function transformarBD() {
 
     valordeSaida.value = numeroDecimal
 }
+
+// LIMPAR AREA DE ENTRADA //
+
+let limpar = document.querySelector('#limpar')
+
+limpar.addEventListener('click',()=>{
+    valordeEntrada.value = ''
+    valordeSaida.value = ''
+})
