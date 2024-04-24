@@ -1,82 +1,11 @@
-// CONVERSOR DE NUMEROS EM DECIMAIL PARA BINÁRIO //
-//
-//
-//
-
-document.addEventListener('DOMContentLoaded',()=>{
-        valordeEntrada.focus()
-})
-
-// ALTERAÇÃO DO CONVERSOR // 
-
-let label = document.querySelectorAll('label')
-let change = document.querySelector("#change")
-let conversor = 0
-
-change.addEventListener('click',()=>{
-    
-    valordeEntrada.focus()
-
-    if( label[0].textContent == 'Decimal'){ 
-        label[0].textContent = 'Binário'
-    } else {
-         label[0].textContent = 'Decimal'
-    };
-
-    if( label[1].textContent == 'Decimal'){ 
-        label[1].textContent = 'Binário'
-    } else {
-        label[1].textContent = 'Decimal'
-    };
-
-    if (conversor == 0) { conversor = 1} else {conversor = 0 }
-
-    valordeEntrada.value = ('')
-    valordeSaida.value = ('')
-});
-
-function changeConersor() {
-    switch (conversor) {
-        case 0:
-            transformarDB()
-            break;
-        case 1:
-            transformarBD()
-            break;
-    }      
-}
-
-
-// CONVERSOR //
-
-let valordeEntrada = document.querySelector('#valordeEntrada')
-let valordeSaida = document.querySelector('#valordeSaida')
-let transformer = document.querySelector('#transformer')
-
-    // Validação // 
-
-    transformer.addEventListener('click',()=>{
-        if(valordeEntrada.value !== ''){
-            changeConersor()
-        } else {
-            window.alert('Digite um número válido!!')
-        }
-    })
-    
-    document.addEventListener('keyup',(event)=>{
-        if(event.key === 'Enter'){
-            if( valordeEntrada.value !== ''){
-                changeConersor()
-            } else {
-                window.alert('Digite um número válido!!')
-            }
-        }
-    })
-
 ///////// Conversão D > B ////////////////
 
+let numero_teste = 123
+
+let decimal = numero_teste
+
 function transformarDB() {
-    let decimal = valordeEntrada.value 
+    // let decimal = valordeEntrada.value 
     let resto = ''
     let numberBinario = []
     let cont = 0
@@ -90,17 +19,29 @@ function transformarDB() {
         if(decimal == 1 || decimal == 0){
             numberBinario.unshift(decimal)
             cont = 1
-            valordeSaida.value = numberBinario.join('')
+            // valordeSaida.value = numberBinario.join('')
+            console.log(numberBinario.join(''),'binario');
         }
     }
 }
 
+if (decimal == '') {
+    console.log("digite um numero válido");
+} else{
+    transformarDB()
+}
+
+//
+//
+//
+//
 /////////// conversor de B > D /////////////
+
+let binario = String(numero_teste)
 
 function transformarBD() {
 
-    let binario = String(valordeEntrada.value)  
-     
+    // let binario = String(valordeEntrada.value)  
     // numero binario em string //
     
     arrayNumberBinario = Array.from(binario)
@@ -118,27 +59,22 @@ function transformarBD() {
         numeroDecimal = Number(numeroDecimal) + Number(result)       
         cont++
     });  
-
-    valordeSaida.value = numeroDecimal
+    // valordeSaida.value = numeroDecimal
+    console.log(numeroDecimal,'decimal');
 }
 
-// LIMPAR AREA DE ENTRADA //
+if (binario == '') {
+    console.log("digite um numero válido");
+} else{
+    transformarBD()
+}
 
-let limpar = document.querySelector('#limpar')
+//
+//
+//
+// CONVERSOR D > H
 
-limpar.addEventListener('click',()=>{
-    valordeEntrada.value = ''
-    valordeSaida.value = ''
-    valordeEntrada.focus()
-})
-//
-//
-//
-//
-//
-
-
-let numberDecimal = 1000
+let numberDecimal = numero_teste
 let arrayHexadecimal = []
 
     // FUNÇÃO PARA NUMEROS MENORES QUE 16
@@ -171,7 +107,7 @@ function menor16(numero) {
 
     // CONVERSOR D > H
 
-function conversordh() {
+function transformarDH() {
     if ( numberDecimal < 16) {        
         menor16(numberDecimal)
     } else {
@@ -201,24 +137,21 @@ function conversordh() {
 if (numberDecimal == '') {
     console.log("digite um numero válido");
 } else{
-    conversordh()
+    transformarDH()
 }
 
 // 
 // 
 // 
-// 
-// 
-// 
 
-let Hexadecimal = ''
+let Hexadecimal = ['7b']
 let numberHexadecimal = [] 
 let numeroDecimal = ''
 let resto
  
     // CONVERDOR H > D
 
-function conversorhd() {
+function transformarHD() {
 
     numberHexadecimal = String(Hexadecimal)
 
@@ -266,8 +199,32 @@ function conversorhd() {
     if (Hexadecimal == '') {
         console.log("digite um numero válido");
     } else{
-        conversorhd()
+        transformarHD()
     }
 
+//      CONVERSOR OCTAL 
 
+let octal = '12'
 
+function transformarOD() {
+    
+    let arrayNumberOctal = Array.from(octal)
+    arrayNumberOctal = arrayNumberOctal.reverse()
+
+    // conversor //
+    
+    let cont = 0
+    let numeroDecimal = ''
+    
+    arrayNumberOctal.forEach(element => {
+
+        let result = element * 8 ** cont
+
+        numeroDecimal = Number(numeroDecimal) + Number(result)       
+        cont++
+    });  
+    // valordeSaida.value = numeroDecimal
+    console.log(numeroDecimal,'decimal');
+}
+
+transformarOD()
