@@ -1,6 +1,5 @@
-///////// Conversão D > B ////////////////
+    // CONVERSOR D > B 
 
-let numero_teste = 123
 
 let decimal = numero_teste
 
@@ -25,17 +24,16 @@ function transformarDB() {
     }
 }
 
+    //  CHAMADA DA FUNÇÃO
+
 if (decimal == '') {
     console.log("digite um numero válido");
 } else{
     transformarDB()
 }
 
-//
-//
-//
-//
-/////////// conversor de B > D /////////////
+
+    // CONVERSOR  B > D 
 
 let binario = String(numero_teste)
 
@@ -63,16 +61,16 @@ function transformarBD() {
     console.log(numeroDecimal,'decimal');
 }
 
+    //CHAMADA DA FUNÇÃO
+
 if (binario == '') {
     console.log("digite um numero válido");
 } else{
     transformarBD()
 }
 
-//
-//
-//
-// CONVERSOR D > H
+
+    // CONVERSOR D > H
 
 let numberDecimal = numero_teste
 let arrayHexadecimal = []
@@ -105,8 +103,6 @@ function menor16(numero) {
     }
 }  
 
-    // CONVERSOR D > H
-
 function transformarDH() {
     if ( numberDecimal < 16) {        
         menor16(numberDecimal)
@@ -132,7 +128,7 @@ function transformarDH() {
     console.log(arrayHexadecimal.join(""),'hexadecimal')
 }
 
-    // CHAMADA DA FUNNCAO CONVERSORDH
+    // CHAMADA DA FUNCAO
 
 if (numberDecimal == '') {
     console.log("digite um numero válido");
@@ -140,16 +136,14 @@ if (numberDecimal == '') {
     transformarDH()
 }
 
-// 
-// 
-// 
+
+    // CONVERDOR H > D
 
 let Hexadecimal = ['7b']
 let numberHexadecimal = [] 
 let numeroDecimal = ''
 let resto
  
-    // CONVERDOR H > D
 
 function transformarHD() {
 
@@ -202,9 +196,9 @@ function transformarHD() {
         transformarHD()
     }
 
-//      CONVERSOR OCTAL 
+    //  CONVERSOR OCTAL 
 
-let octal = '12'
+let octal = '764'
 
 function transformarOD() {
     
@@ -227,4 +221,41 @@ function transformarOD() {
     console.log(numeroDecimal,'decimal');
 }
 
-transformarOD()
+    // CHAMADA DA FUNÇÃO
+
+if (octal == '') {
+    console.log("digite um numero válido");
+} else{
+    transformarOD()
+}
+
+    // CONVERSOR D > O
+    
+    let decimalO = 10
+
+function transformarDO(){
+
+    let numeroOctal = []
+    let cont = 0
+    do {
+        let resto = decimalO % 8
+        numeroOctal.unshift(resto)
+        decimalO = Math.floor(decimalO/8)
+        
+        if (decimalO < 8 ) {
+            numeroOctal.unshift(decimalO)
+            cont = 1
+        }
+
+    } while (cont == 0);
+
+    console.log(numeroOctal.join(''));
+} 
+
+    // CHAMADA DA FUNÇÃO
+
+if (decimalO == '') {
+    console.log("digite um numero válido");
+} else{
+    transformarDO()
+}

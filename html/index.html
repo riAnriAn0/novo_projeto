@@ -6,75 +6,31 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
-    <div>
-        Este tutorial fornecerá uma explicação passo a passo sobre como usar o conversor de números decimais para binário e binários para decimais, utilizando o código JavaScript fornecido.
+    <div class="container">
+        <div>
+            <select name="" id="sistemaEntrada">
+                <option value="1">Decimal</option>
+                <option value="2">Binário</option>
+                <option value="3">Octal</option>
+                <option value="4">Hexadecimal</option>
+            </select>
+            <input type="number" name="" id="numeroEntrada">
 
-        <h3>1. Visão Geral:</h3>
-        
-        <p>
-            O conversor permite a conversão bidirecional entre números decimais e binários. Você pode inserir um número decimal e obter sua representação binária, ou inserir um número binário e obtê-lo em sua forma decimal.
-        </p>
+            <select name="" id="sistemaSaida">
+                <option value="1">Decimal</option>
+                <option value="2">Binário</option>
+                <option value="3">Octal</option>
+                <option value="4">Hexadecimal</option>
+            </select>
+            <input type="number" name="" id="numeroSaida" readonly>
 
-        <h3>2. Interface do Usuário:</h3>
-
-        <p>
-            A interface do conversor consiste em:
-            Campo de Entrada: Onde você digita o número que deseja converter.
-            Campo de Saída: Onde o resultado da conversão será exibido.
-            Botão "Alterar": Para alternar entre os modos Decimal e Binário.
-            Botão "Converter": Para iniciar a conversão.
-            Botão "Limpar": Para limpar os campos de entrada e saída.
-        </p>
-
-        <h3>3. Passos para Utilização:</h3>
-
-        <h4>3.1. Entrada de Números:</h4>
-
-        <p>
-            Digite o número que deseja converter na caixa de entrada.
-            Certifique-se de selecionar o tipo correto de número (Decimal ou Binário) com base no formato do número inserido.
-        </p>
-
-        <h4>3.2. Alterar Modo do Conversor:</h4>
-
-        <p>
-            Clique no botão "Alterar" para alternar entre os modos Decimal e Binário.
-            Isso alterna entre a conversão de Decimal para Binário e vice-versa.
-        </p>
-
-        <h4>3.3. Converter:</h4>
-
-        <p>
-            Depois de inserir o número e selecionar o modo de conversão desejado, clique no botão "Converter" ou pressione "Enter" no teclado.
-            O resultado da conversão será exibido no campo de saída.
-        </p>
-
-        <h4>3.4. Limpar Entrada:</h4>
-
-        <p>Se desejar limpar os campos de entrada e saída após a conversão, clique no botão "Limpar".</p>
-
-        <h3>4. Código JavaScript:</h3>
-
-        <p>O código JavaScript é responsável por realizar a conversão entre decimal e binário, bem como por controlar a interface do usuário.</p>
-
-        <h3>5. Exemplo de Uso:</h3>
-        <p>
-            Suponha que você queira converter o número decimal 10 em binário.
-            Digite "10" no campo de entrada.
-            Selecione "Decimal" como o modo de conversão.
-            Clique no botão "Converter" ou pressione "Enter".
-            O campo de saída exibirá o valor binário correspondente, que é "1010".
-            Da mesma forma, se você quiser converter o número binário "1010" em decimal:
-            Digite "1010" no campo de entrada.
-            Selecione "Binário" como o modo de conversão.
-            Clique no botão "Converter" ou pressione "Enter".
-            O campo de saída mostrará o valor decimal correspondente, que é "10".
-            Agora você está pronto para usar o conversor de números decimais para binário e binários para decimais de forma eficaz!
-        </p>
-        <span>SOMENTE PARA VALORES ''INTEIROS''</span>
+            <button id="buttonConverter">CONVERTER</button>
+        </div>
     </div>
-    <button><a href="page.html">COMEÇAR</a></button>
+
+    <script src="../js/script.js"></script>
 </body>
 </html>

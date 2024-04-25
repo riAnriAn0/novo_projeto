@@ -1,82 +1,11 @@
-// CONVERSOR DE NUMEROS EM DECIMAIL PARA BINÁRIO //
-//
-//
-//
+let sistemaEntrada = document.querySelector('#sistemaEntrada')
+let sistemaSaiada = document.querySelector('#sistemaSaida')
+let numeroEntrada = document.querySelector('#numeroEntrada')
 
-document.addEventListener('DOMContentLoaded',()=>{
-        valordeEntrada.focus()
-})
-
-// ALTERAÇÃO DO CONVERSOR // 
-
-let label = document.querySelectorAll('label')
-let change = document.querySelector("#change")
-let conversor = 0
-
-change.addEventListener('click',()=>{
-    
-    valordeEntrada.focus()
-
-    if( label[0].textContent == 'Decimal'){ 
-        label[0].textContent = 'Binário'
-    } else {
-         label[0].textContent = 'Decimal'
-    };
-
-    if( label[1].textContent == 'Decimal'){ 
-        label[1].textContent = 'Binário'
-    } else {
-        label[1].textContent = 'Decimal'
-    };
-
-    if (conversor == 0) { conversor = 1} else {conversor = 0 }
-
-    valordeEntrada.value = ('')
-    valordeSaida.value = ('')
-});
-
-function changeConersor() {
-    switch (conversor) {
-        case 0:
-            transformarDB()
-            break;
-        case 1:
-            transformarBD()
-            break;
-    }      
-}
-
-
-// CONVERSOR //
-
-let valordeEntrada = document.querySelector('#valordeEntrada')
-let valordeSaida = document.querySelector('#valordeSaida')
-let transformer = document.querySelector('#transformer')
-
-    // Validação // 
-
-    transformer.addEventListener('click',()=>{
-        if(valordeEntrada.value !== ''){
-            changeConersor()
-        } else {
-            window.alert('Digite um número válido!!')
-        }
-    })
-    
-    document.addEventListener('keyup',(event)=>{
-        if(event.key === 'Enter'){
-            if( valordeEntrada.value !== ''){
-                changeConersor()
-            } else {
-                window.alert('Digite um número válido!!')
-            }
-        }
-    })
-
-///////// Conversão D > B ////////////////
-
+// CONVERSOR D > B 
 function transformarDB() {
-    let decimal = valordeEntrada.value 
+    
+    let decimal = numeroEntrada.value
     let resto = ''
     let numberBinario = []
     let cont = 0
@@ -90,23 +19,17 @@ function transformarDB() {
         if(decimal == 1 || decimal == 0){
             numberBinario.unshift(decimal)
             cont = 1
-            valordeSaida.value = numberBinario.join('')
+            numeroSaida.value = numberBinario.join('')
         }
     }
 }
 
-/////////// conversor de B > D /////////////
-
+// CONVERSOR  B > D 
 function transformarBD() {
-
-    let binario = String(valordeEntrada.value)  
-     
-    // numero binario em string //
     
+    let binario = String(numeroEntrada.value)
     arrayNumberBinario = Array.from(binario)
     arrayNumberBinario = arrayNumberBinario.reverse()
-
-    // conversor //
     
     let cont = 0
     let numeroDecimal = ''
@@ -118,68 +41,49 @@ function transformarBD() {
         numeroDecimal = Number(numeroDecimal) + Number(result)       
         cont++
     });  
-
-    valordeSaida.value = numeroDecimal
+    numeroSaida.value = numeroDecimal
 }
 
-// LIMPAR AREA DE ENTRADA //
+// CONVERSOR D > H
 
-let limpar = document.querySelector('#limpar')
+// FUNÇÃO PARA NUMEROS MENORES QUE 16
+     
+function transformarDH() {
+    let arrayHexadecimal = []
 
-limpar.addEventListener('click',()=>{
-    valordeEntrada.value = ''
-    valordeSaida.value = ''
-    valordeEntrada.focus()
-})
-//
-//
-//
-//
-//
-
-
-let numberDecimal = 1000
-let arrayHexadecimal = []
-
-    // FUNÇÃO PARA NUMEROS MENORES QUE 16
-
-function menor16(numero) {
-    switch (numero) {
-        case 10:
-            arrayHexadecimal.unshift("A")    
-            break;
-        case 11:
-            arrayHexadecimal.unshift("B")    
-            break;
-        case 12:
-            arrayHexadecimal.unshift("C")    
-            break;
-        case 13 :
-            arrayHexadecimal.unshift("D")    
-            break;
-        case 14 :
-            arrayHexadecimal.unshift("E")    
-            break;
-        case 15 :
-            arrayHexadecimal.unshift("F")    
-            break;
-        default:
-            arrayHexadecimal.unshift(numero)    
-            break;
+    function menor16(numero) {
+        switch (numero) {
+            case 10:
+                arrayHexadecimal.unshift("A")    
+                break;
+            case 11:
+                arrayHexadecimal.unshift("B")    
+                break;
+            case 12:
+                arrayHexadecimal.unshift("C")    
+                break;
+            case 13 :
+                arrayHexadecimal.unshift("D")    
+                break;
+            case 14 :
+                arrayHexadecimal.unshift("E")    
+                break;
+            case 15 :
+                arrayHexadecimal.unshift("F")    
+                break;
+            default:
+                arrayHexadecimal.unshift(numero)    
+                break;
+        }
     }
-}  
 
-    // CONVERSOR D > H
+    let numberDecimal = numeroEntrada.value
 
-function conversordh() {
     if ( numberDecimal < 16) {        
         menor16(numberDecimal)
-    } else {
-        
+    } else {    
         let cont = 0
-
         do {
-
             let resto = numberDecimal % 16
             numberDecimal = Math.floor(numberDecimal/16)
             menor16(resto)
@@ -188,38 +92,18 @@ function conversordh() {
                 menor16(numberDecimal)
                 cont = 1
             }
-
         } while (cont == 0)
-        
     }
+    numeroSaida.value = arrayHexadecimal.join('')
+}
+
+// CONVERDOR H > D
   
-    console.log(arrayHexadecimal.join(""),'hexadecimal')
-}
-
-    // CHAMADA DA FUNNCAO CONVERSORDH
-
-if (numberDecimal == '') {
-    console.log("digite um numero válido");
-} else{
-    conversordh()
-}
-
-// 
-// 
-// 
-// 
-// 
-// 
-
-let Hexadecimal = ''
-let numberHexadecimal = [] 
-let numeroDecimal = ''
-let resto
- 
-    // CONVERDOR H > D
-
-function conversorhd() {
-
+function transformarHD() {
+    let Hexadecimal = numeroEntrada.value
+    let numberHexadecimal = [] 
+    let numeroDecimal = ''
+       
     numberHexadecimal = String(Hexadecimal)
 
     numberHexadecimal = Array.from(numberHexadecimal)
@@ -258,16 +142,122 @@ function conversorhd() {
         expt++
     });
 
-    console.log(numeroDecimal,'decimal');
+    numeroSaida.value = numeroDecimal
+}
+//  CONVERSOR OCTAL 
+
+function transformarOD() {
+    let octal = numeroEntrada.value
+    let arrayNumberOctal = Array.from(octal)
+    arrayNumberOctal = arrayNumberOctal.reverse()
+
+    let cont = 0
+    let numeroDecimal = ''
+    
+    arrayNumberOctal.forEach(element => {
+
+        let result = element * 8 ** cont
+
+        numeroDecimal = Number(numeroDecimal) + Number(result)       
+        cont++
+    });  
+    numeroSaida.value = numeroDecimal
 }
 
-    // CHAMADA DA FUNCAO 
+   // CONVERSOR D > O    
+function transformarDO(){
+       
+    let decimalO = numeroEntrada.value
+    let numeroOctal = []
+    let cont = 0
+    do {
+        let resto = decimalO % 8
+        numeroOctal.unshift(resto)
+        decimalO = Math.floor(decimalO/8)
+        
+        if (decimalO < 8 ) {
+            numeroOctal.unshift(decimalO)
+            cont = 1
+        }
 
-    if (Hexadecimal == '') {
-        console.log("digite um numero válido");
-    } else{
-        conversorhd()
+    } while (cont == 0);
+
+    numeroSaida.value = numeroOctal.join('')
+} 
+
+    // OPIÇÕES DE TRANSFORMAÇÃO
+    
+let optionsTranformacao = []
+
+function mudancaOptions(){
+
+    let indiceEntrada = sistemaEntrada.selectedIndex
+    let option_01 = sistemaEntrada.options[indiceEntrada].value
+
+    let indiceSaida = sistemaSaiada.selectedIndex
+    let option_02 = sistemaSaiada.options[indiceSaida].value
+
+    optionsTranformacao = [option_01,option_02]
+    optionsTranformacao = optionsTranformacao.join('')
+}
+
+sistemaEntrada.addEventListener('change',()=>{
+    
+    mudancaOptions()
+    numeroEntrada.focus()
+    numeroEntrada.value = ''
+    numeroSaida.value = ''
+    
+    if (optionsTranformacao == 41 || optionsTranformacao == 42 || optionsTranformacao == 43) {
+        inputs[0].setAttribute("type","text")
+    }else{
+        inputs[0].setAttribute("type","number")    
     }
+})
+sistemaSaiada.addEventListener('change',()=>{
+    
+    mudancaOptions()
+    numeroEntrada.focus()
+    numeroEntrada.value = ''
+    numeroSaida.value = ''
 
+    if (optionsTranformacao == 14 || optionsTranformacao == 24 || optionsTranformacao == 34) {
+        inputs[1].setAttribute("type","text")
+    } else{
+        inputs[1].setAttribute("type","number")    
+    }
+})
 
+    // CONVERSORES
 
+let numeroSaida = document.querySelector('#numeroSaida')
+let inputs = document.querySelectorAll('input')
+let buttonConverter = document.querySelector("#buttonConverter")
+
+buttonConverter.addEventListener('click',()=>{
+    if (optionsTranformacao == 12) {
+        transformarDB()
+    } else if (optionsTranformacao == 13) {
+        transformarDO()
+    } else if (optionsTranformacao == 14) {
+        transformarDH()
+    } else if (optionsTranformacao == 21) {
+        transformarBD()
+    } else if (optionsTranformacao == 23) {
+        console.log("TESTE");
+    } else if (optionsTranformacao == 24) {
+        console.log("TESTE");
+    } else if (optionsTranformacao == 31) {
+        transformarOD()
+    } else if (optionsTranformacao == 32) {
+        console.log("TESTE");
+    } else if (optionsTranformacao == 34) {
+        console.log("TESTE");
+    } else if (optionsTranformacao == 41) {
+        transformarHD()
+    } else if (optionsTranformacao == 42) {
+        console.log("TESTE");
+    } else if (optionsTranformacao == 43) {
+        console.log("TESTE");
+    }
+})
