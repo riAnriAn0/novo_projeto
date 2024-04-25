@@ -3,32 +3,34 @@ let sistemaSaiada = document.querySelector('#sistemaSaida')
 let numeroEntrada = document.querySelector('#numeroEntrada')
 
 // CONVERSOR D > B 
-function transformarDB() {
+function transformarDB(numero) {
     
-    let decimal = numeroEntrada.value
+    let Decimal = numero
     let resto = ''
     let numberBinario = []
     let cont = 0
 
     while ( cont == 0){
 
-        resto = decimal % 2
+        resto = Decimal % 2
         numberBinario.unshift(resto)
-        decimal = Math.floor(decimal / 2)
+        Decimal = Math.floor(Decimal / 2)
 
-        if(decimal == 1 || decimal == 0){
-            numberBinario.unshift(decimal)
+        if(Decimal == 1 || Decimal == 0){
+            numberBinario.unshift(Decimal)
             cont = 1
-            numeroSaida.value = numberBinario.join('')
         }
     }
+
+    numberBinario = numberBinario.join('')
+    return numberBinario ;
 }
 
 // CONVERSOR  B > D 
-function transformarBD() {
-    
-    let binario = String(numeroEntrada.value)
-    arrayNumberBinario = Array.from(binario)
+function transformarBD(numero) {
+    let Binario = numero
+    Binario = String(Binario)
+    arrayNumberBinario = Array.from(Binario)
     arrayNumberBinario = arrayNumberBinario.reverse()
     
     let cont = 0
@@ -41,18 +43,18 @@ function transformarBD() {
         numeroDecimal = Number(numeroDecimal) + Number(result)       
         cont++
     });  
-    numeroSaida.value = numeroDecimal
+    return numeroDecimal;
 }
 
 // CONVERSOR D > H
 
 // FUNÇÃO PARA NUMEROS MENORES QUE 16
      
-function transformarDH() {
+function transformarDH(numero) {
     let arrayHexadecimal = []
 
-    function menor16(numero) {
-        switch (numero) {
+    function menor16(element) {
+        switch (element) {
             case 10:
                 arrayHexadecimal.unshift("A")    
                 break;
@@ -72,13 +74,12 @@ function transformarDH() {
                 arrayHexadecimal.unshift("F")    
                 break;
             default:
-                arrayHexadecimal.unshift(numero)    
+                arrayHexadecimal.unshift(element)    
                 break;
         }
     }
 
-    let numberDecimal = numeroEntrada.value
-
+    let numberDecimal = Number(numero)
     if ( numberDecimal < 16) {        
         menor16(numberDecimal)
     } else {    
@@ -94,13 +95,14 @@ function transformarDH() {
             }
         } while (cont == 0)
     }
-    numeroSaida.value = arrayHexadecimal.join('')
+    arrayHexadecimal = arrayHexadecimal.join('')
+    return arrayHexadecimal;
 }
 
 // CONVERDOR H > D
   
-function transformarHD() {
-    let Hexadecimal = numeroEntrada.value
+function transformarHD(numero) {
+    let Hexadecimal = numero
     let numberHexadecimal = [] 
     let numeroDecimal = ''
        
@@ -142,13 +144,13 @@ function transformarHD() {
         expt++
     });
 
-    numeroSaida.value = numeroDecimal
+    return numeroDecimal;
 }
 //  CONVERSOR OCTAL 
 
-function transformarOD() {
-    let octal = numeroEntrada.value
-    let arrayNumberOctal = Array.from(octal)
+function transformarOD(numero) {
+    let Octal = numero
+    let arrayNumberOctal = Array.from(Octal)
     arrayNumberOctal = arrayNumberOctal.reverse()
 
     let cont = 0
@@ -160,14 +162,15 @@ function transformarOD() {
 
         numeroDecimal = Number(numeroDecimal) + Number(result)       
         cont++
-    });  
-    numeroSaida.value = numeroDecimal
+    }); 
+
+    return numeroDecimal;
 }
 
    // CONVERSOR D > O    
-function transformarDO(){
+function transformarDO(numero){
        
-    let decimalO = numeroEntrada.value
+    let decimalO = numero
     let numeroOctal = []
     let cont = 0
     do {
@@ -182,7 +185,7 @@ function transformarDO(){
 
     } while (cont == 0);
 
-    numeroSaida.value = numeroOctal.join('')
+    return numeroOctal.join('');
 } 
 
     // OPIÇÕES DE TRANSFORMAÇÃO
@@ -199,29 +202,35 @@ function mudancaOptions(){
 
     optionsTranformacao = [option_01,option_02]
     optionsTranformacao = optionsTranformacao.join('')
+
+    return [indiceEntrada,indiceSaida];
 }
 
+
 sistemaEntrada.addEventListener('change',()=>{
-    
-    mudancaOptions()
+    let index = mudancaOptions()
+    let sistemaNumerico0_01 = sistemaEntrada.options[index[0]].innerText
+
     numeroEntrada.focus()
     numeroEntrada.value = ''
     numeroSaida.value = ''
     
-    if (optionsTranformacao == 41 || optionsTranformacao == 42 || optionsTranformacao == 43) {
+    if (sistemaNumerico0_01 == 'Hexadecimal') {
         inputs[0].setAttribute("type","text")
     }else{
         inputs[0].setAttribute("type","number")    
     }
 })
+
 sistemaSaiada.addEventListener('change',()=>{
-    
-    mudancaOptions()
+    index = mudancaOptions()
+    let sistemaNumerico0_02 = sistemaEntrada.options[index[1]].innerText
+
     numeroEntrada.focus()
     numeroEntrada.value = ''
     numeroSaida.value = ''
 
-    if (optionsTranformacao == 14 || optionsTranformacao == 24 || optionsTranformacao == 34) {
+    if (sistemaNumerico0_02 == 'Hexadecimal') {
         inputs[1].setAttribute("type","text")
     } else{
         inputs[1].setAttribute("type","number")    
@@ -234,30 +243,53 @@ let numeroSaida = document.querySelector('#numeroSaida')
 let inputs = document.querySelectorAll('input')
 let buttonConverter = document.querySelector("#buttonConverter")
 
+let decimal
+let binario
+let octal
+let hexadecimal
+
 buttonConverter.addEventListener('click',()=>{
     if (optionsTranformacao == 12) {
-        transformarDB()
+        binario = transformarDB(numeroEntrada.value)
+        numeroSaida.value = binario
     } else if (optionsTranformacao == 13) {
-        transformarDO()
+        octal = transformarDO(numeroEntrada.value)
+        numeroSaida.value = octal
     } else if (optionsTranformacao == 14) {
-        transformarDH()
+        hexadecimal = transformarDH(numeroEntrada.value)
+        numeroSaida.value = hexadecimal
     } else if (optionsTranformacao == 21) {
-        transformarBD()
+        decimal = transformarBD(numeroEntrada.value)
+        numeroSaida.value = decimal
     } else if (optionsTranformacao == 23) {
-        console.log("TESTE");
+        decimal = transformarBD(numeroEntrada.value)
+        octal = transformarDO(decimal)
+        numeroSaida.value = octal
     } else if (optionsTranformacao == 24) {
-        console.log("TESTE");
+        decimal = transformarBD(numeroEntrada.value)
+        hexadecimal = transformarDH(decimal)
+        numeroSaida.value = hexadecimal
     } else if (optionsTranformacao == 31) {
-        transformarOD()
+        decimal = transformarOD(numeroEntrada.value)
+        numeroSaida.value = decimal
     } else if (optionsTranformacao == 32) {
-        console.log("TESTE");
+        decimal = transformarOD(numeroEntrada.value)
+        binario = transformarDB(decimal)
+        numeroSaida.value = binario
     } else if (optionsTranformacao == 34) {
-        console.log("TESTE");
+        decimal = transformarOD(numeroEntrada.value)
+        hexadecimal = transformarDH(decimal)
+        numeroSaida.value = hexadecimal
     } else if (optionsTranformacao == 41) {
-        transformarHD()
+        decimal = transformarHD(numeroEntrada.value)
+        numeroSaida.value = decimal
     } else if (optionsTranformacao == 42) {
-        console.log("TESTE");
+        decimal = transformarHD(numeroEntrada.value)
+        binario = transformarDB(decimal)
+        numeroSaida.value = binario
     } else if (optionsTranformacao == 43) {
-        console.log("TESTE");
+        decimal = transformarHD(numeroEntrada.value)
+        octal = transformarDO(decimal)
+        numeroSaida.value = octal
     }
 })
